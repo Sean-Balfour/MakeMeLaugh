@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
 
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(horizontal, vertical, 0) * 1000 * movementSpeed * Time.fixedDeltaTime);
+        this.gameObject.GetComponent<Rigidbody2D>().AddForce (new Vector3(horizontal, vertical, 0)*force * movementSpeed * Time.fixedDeltaTime);
 
         if (vertical != 0) m_Animator.SetFloat("X", vertical);
         if (horizontal != 0) m_Animator.SetFloat("Y", horizontal);
