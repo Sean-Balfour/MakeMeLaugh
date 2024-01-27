@@ -188,7 +188,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GGJ24_office_sprites_lightkeyboard_0: -472385604137454817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
