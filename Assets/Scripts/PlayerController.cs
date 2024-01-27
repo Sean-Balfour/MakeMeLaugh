@@ -15,9 +15,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float force;
 
+    [SerializeField] private InteractionUiController m_InteractionUiController;
+
     private Animator m_Animator;
 
     private List<Item> inventory = new List<Item>();
+
+    public bool isInteracting { get; private set; } = false;
+
+    private bool wasInteractingLastFrame = false;
 
 
     private void Awake()
@@ -54,6 +60,8 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
+        if (isInteracting) return;
+
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -67,11 +75,17 @@ public class PlayerController : MonoBehaviour
     }
     void interact()
     {
-        if (Input.GetKeyDown("e"))
+        if (isInteracting) return;
+
+
+        if (Input.GetKeyUp("e") && !wasInteractingLastFrame)
         {
             m_Animator.SetBool("IsInteract", true);
+
             search();
         }
+
+        wasInteractingLastFrame = false;
     }
 
     void search()
@@ -81,13 +95,23 @@ public class PlayerController : MonoBehaviour
         //* TODO
         //* Show UI to select interactable
 
+        m_InteractionUiController.ShowInteractables(interactableList);
+
         //* TEMP
         //* Select first interactable
         if (interactableList.Length > 0)
         {
-            Interactables interactable = interactableList[0].GetComponent<Interactables>();
-            interactable.Interact();
+            isInteracting = true;
+            m_Animator.SetBool("IsWalk", false);
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
+    }
+
+    public void StopInteracting()
+    {
+        isInteracting = false;
+        m_InteractionUiController.Hide();
+        wasInteractingLastFrame = true;
     }
 
     public void AddItem(Item item)
