@@ -49,9 +49,14 @@ MonoBehaviour:
   CEO: {fileID: 0}
   staffPrefab: {fileID: 9177228351137049657, guid: f7fd6c4fb0cb38749b00a788e4c7a593, type: 3}
   showRandomChances: 1
-  directorChance: 0.000001
+  directorChance: 0.00000001
   principalChance: 0.2
   leadChance: 0.3
   seniorChance: 0.4
   midChance: 0.5
   juniorChance: 1
+  directorLimit: 2
+  principalLimit: 4
+  leadLimit: 6
+  seniorLimit: 8
+  midLimit: 10

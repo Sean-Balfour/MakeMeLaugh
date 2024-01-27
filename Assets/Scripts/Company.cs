@@ -43,6 +43,18 @@ public class Company : MonoBehaviour
     [SerializeField]
     private float juniorChance;
 
+    [SerializeField]
+    private int directorLimit;
+    [SerializeField]
+    private int principalLimit;
+    [SerializeField]
+    private int leadLimit;
+    [SerializeField]
+    private int seniorLimit;
+    [SerializeField]
+    private int midLimit;
+
+
 #if UNITY_EDITOR
     [CustomEditor(typeof(Company))]
     class MyClassEditor : Editor
@@ -55,7 +67,7 @@ public class Company : MonoBehaviour
                 DrawDefaultInspector();
             else
             {
-                string[] varsToHide = { "directorChance", "principalChance", "leadChance", "seniorChance", "midChance", "juniorChance" };
+                string[] varsToHide = { "directorChance", "principalChance", "leadChance", "seniorChance", "midChance", "juniorChance", "directorLimit", "principalLimit", "leadLimit", "seniorLimit", "midLimit" };
                 DrawPropertiesExcluding(serializedObject, varsToHide);
             }
             serializedObject.ApplyModifiedProperties();
@@ -108,6 +120,7 @@ public class Company : MonoBehaviour
             {
                 if (roll < keyValuePair.Key)
                 {
+                    // add re-roll if at limit
                     newStaffLevel = keyValuePair.Value;
                     break;
                 }
