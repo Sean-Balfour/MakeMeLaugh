@@ -46,6 +46,7 @@ public class Staff : MonoBehaviour
             Staff newStaff = Instantiate(Company.company.StaffPrefab);
             newStaff.level = (level + 1);
             newStaff.boss = this;
+            newStaff.CreateProfile();
 
             lackeys.Add(newStaff);
             newStaff.Init();
@@ -61,6 +62,7 @@ public class Staff : MonoBehaviour
             newStaff.level = lackeyLevel;
             newStaff.gameObject.name = lackeyLevel.ToString();
             newStaff.boss = this;
+            newStaff.CreateProfile();
 
             lackeys.Add(newStaff);
 
