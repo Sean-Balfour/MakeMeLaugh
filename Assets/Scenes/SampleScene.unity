@@ -349,81 +349,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5392892260839068679, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+      propertyPath: m_Name
+      value: Company
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 340570924663258749, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
+    - target: {fileID: 5455587665212024217, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827799585397949357, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: employees
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827799585397949357, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: midChance
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827799585397949357, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: leadChance
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827799585397949357, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: juniorChance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827799585397949357, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: seniorChance
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827799585397949357, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: directorChance
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827799585397949357, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: principalChance
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827799585397949357, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: showRandomChances
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4235441316720343709, guid: 961ce6e3faa6358428303d4e6eede1ba, type: 3}
-      propertyPath: m_Name
-      value: Company
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
