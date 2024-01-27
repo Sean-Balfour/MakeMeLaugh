@@ -10,6 +10,15 @@ public class TakeItem : Interactables
     public override void Interact()
     {
         PlayerController.instance.AddItem(itemToGive);
+        isInteractable = false;
+        this.EndInteract();
+    }
+
+    public override string GetName()
+    {
+        string name = "Take " + itemToGive.itemName;
+        if (!isInteractable) name += " (Taken)";
+        return name;
     }
 
 }
