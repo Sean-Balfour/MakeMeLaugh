@@ -36,22 +36,22 @@ public class GameUIController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            if (pausePanel.activeSelf)
+            if (controlsPanel.activeSelf)
             {
+                Back();
+            }
+            else
+            {
+                Time.timeScale = 0;
+
                 isPaused = !isPaused;
-                pausePanel.SetActive(false);
+                pausePanel.SetActive(isPaused);
                 Button button = GameObject.Find("ResumeButton").GetComponent<Button>();
                 Debug.Log(button.gameObject.name);
                 button.gameObject.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(button.gameObject);
             }
-            else
-            {
-                Back();
-            }
-
-            // FREEZE GAME
         }
     }
 
@@ -59,8 +59,7 @@ public class GameUIController : MonoBehaviour
     {
         isPaused = false;
         pausePanel.SetActive(false);
-
-        // UNFREEZE GAME
+        Time.timeScale = 1;
     }
 
     public void HowToPlay()
