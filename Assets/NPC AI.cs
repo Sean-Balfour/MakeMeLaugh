@@ -9,17 +9,21 @@ public class NPCAI : MonoBehaviour
 {
     float timer;
 
+    [SerializeField]
     List<GameObject> nodeObjects;
-    List<Nodes> nodes;
+    
+    List<Nodes> nodes = new List<Nodes>();
 
     Vector3 directionBetweenPoints;
-    RaycastHit hit;
-    bool nodeToGoToFound;
+    RaycastHit2D hit;
     GameObject nodeToGoTo;
+    GameObject currentNode;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentNode = null;
+
         //Set a timer for each NPC so theres some realism to their movement
         timer = Random.Range(5.0f, 10.0f);
 
@@ -28,7 +32,7 @@ public class NPCAI : MonoBehaviour
 
         for(int i = 0; i < nodeObjects.Count; i++)
         {
-            nodes[i] = nodeObjects[i].GetComponent<Nodes>();
+            nodes.Add(nodeObjects[i].GetComponent<Nodes>());
         }
     }
 
@@ -36,18 +40,24 @@ public class NPCAI : MonoBehaviour
     void Update()
     {
         timer = timer - Time.deltaTime;
+        Debug.Log(timer.ToString());
 
         if(timer  <= 0.0f)
         {
-            if(nodeToGoTo == null)
+            MoveToNewNode();
+            timer = Random.Range(5.0f, 10.0f);
+
+            if(currentNode != null)
             {
-                MoveToNewNode();
+                currentNode.GetComponent<Nodes>().setOccupation(false); 
             }
-            else
-            {
-                Vector3.MoveTowards(transform.position, nodeToGoTo.transform.position, Time.deltaTime * 10.0f);
-                timer = Random.Range(5.0f, 10.0f);
-            }
+
+            currentNode = nodeToGoTo;
+        }
+
+        if (nodeToGoTo != null)
+        {
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, nodeToGoTo.transform.position.x, Time.deltaTime * 5.0f), Mathf.Lerp(transform.position.y, nodeToGoTo.transform.position.y, Time.deltaTime * 5.0f));
         }
     }
 
@@ -61,11 +71,15 @@ public class NPCAI : MonoBehaviour
             {
                 directionBetweenPoints = (nodes[i].gameObject.transform.position - transform.position).normalized;
 
-                Physics.Raycast(transform.position, directionBetweenPoints, out hit);
+                hit = Physics2D.Raycast(transform.position, directionBetweenPoints * 10.0f);
+                Debug.DrawRay(transform.position, directionBetweenPoints * 10.0f, Color.cyan, 20.0f);
 
                 if(hit.collider.gameObject.tag == "Node")
                 {
                     nodeToGoTo = nodes[i].gameObject;
+                    nodes[i].setOccupation(true);
+
+                    return;
                 }
 
                 //Find the difference between current node and planned node

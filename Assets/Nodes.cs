@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Nodes : MonoBehaviour
 {
+    [SerializeField]
     bool occupied;
 
     // Start is called before the first frame update
