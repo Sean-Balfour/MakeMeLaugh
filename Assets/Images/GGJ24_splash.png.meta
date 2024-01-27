@@ -188,7 +188,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GGJ24_splash_0: 6979226893136563302
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
