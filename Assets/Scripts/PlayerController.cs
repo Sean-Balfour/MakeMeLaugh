@@ -12,21 +12,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float force;
 
+    private Animator m_Animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_Animator = gameObject.GetComponentInChildren<Animator>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-     
+
+
     }
     private void FixedUpdate()
     {
+        m_Animator.SetBool("IsInteract", false);
+
         Movement();
         interact();
     }
@@ -37,15 +41,19 @@ public class PlayerController : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
 
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        this.gameObject.GetComponent<Rigidbody2D>().AddForce (new Vector3(horizontal, vertical, 0)*1000 * movementSpeed * Time.fixedDeltaTime);
+        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(horizontal, vertical, 0) * 1000 * movementSpeed * Time.fixedDeltaTime);
 
-       
+        if (vertical != 0) m_Animator.SetFloat("X", vertical);
+        if (horizontal != 0) m_Animator.SetFloat("Y", horizontal);
+
+        m_Animator.SetBool("IsWalk", horizontal != 0 || vertical != 0);
+
     }
     void interact()
     {
-
         if (Input.GetKey("e"))
         {
+            m_Animator.SetBool("IsInteract", true);
             search();
         }
     }
@@ -54,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     void search()
     {
-      Collider2D[] interactableList = Physics2D.OverlapCircleAll(transform.position, 2, interactableLayerMask);
+        Collider2D[] interactableList = Physics2D.OverlapCircleAll(transform.position, 2, interactableLayerMask);
         Debug.Log(interactableList.Length);
 
     }
