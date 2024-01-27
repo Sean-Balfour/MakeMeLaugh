@@ -113,6 +113,7 @@ public class Company : MonoBehaviour
         CEO.gameObject.name = "CEO";
         CEO.Init();
         CEO.CreateProfile();
+        CEO.transform.SetParent(transform);
 
         Dictionary<float, StaffLevel> roles = new Dictionary<float, StaffLevel>()
         {
