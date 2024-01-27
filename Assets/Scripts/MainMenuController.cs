@@ -15,12 +15,23 @@ public class MainMenuController : MonoBehaviour
 
     public string gameScene;
 
+    [SerializeField]
+    private GameObject[] Controls;
+
+    private int currentControlDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
         mainPanel.SetActive(true);
         controlsPanel.SetActive(false);
         creditsPanel.SetActive(false);
+        currentControlDisplay = 0;
+        Controls[currentControlDisplay].SetActive(true);
+        for (int i = 1; i < Controls.Length; i++)
+        {
+            Controls[i].SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -50,6 +61,21 @@ public class MainMenuController : MonoBehaviour
         button.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button.gameObject);
+    }
+
+    public void ChangeControl(int direction)
+    {
+        Controls[currentControlDisplay].SetActive(false);
+        currentControlDisplay += direction;
+        if (currentControlDisplay >= Controls.Length)
+        {
+            currentControlDisplay = 0;
+        }
+        else if (currentControlDisplay < 0)
+        {
+            currentControlDisplay = Controls.Length - 1;
+        }
+        Controls[currentControlDisplay].SetActive(true);
     }
 
     public void Credits()
