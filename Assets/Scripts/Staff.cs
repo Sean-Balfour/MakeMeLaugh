@@ -54,6 +54,7 @@ public class Staff : MonoBehaviour
             newStaff.level = (level + 1);
             newStaff.boss = this;
             newStaff.CreateProfile();
+            newStaff.transform.SetParent(Company.company.transform);
 
             lackeys.Add(newStaff);
             newStaff.Init();
@@ -70,6 +71,7 @@ public class Staff : MonoBehaviour
             newStaff.gameObject.name = lackeyLevel.ToString();
             newStaff.boss = this;
             newStaff.CreateProfile();
+            newStaff.transform.SetParent(Company.company.transform);
 
             lackeys.Add(newStaff);
 
