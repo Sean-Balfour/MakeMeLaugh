@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
 
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        this.gameObject.GetComponent<Rigidbody2D>().AddForce (new Vector3(horizontal, vertical, 0)*1000 * movementSpeed * Time.fixedDeltaTime);
+        this.gameObject.GetComponent<Rigidbody2D>().AddForce (new Vector3(horizontal, vertical, 0)*force * movementSpeed * Time.fixedDeltaTime);
 
        
     }
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void search()
     {
-      Collider2D[] interactableList = Physics2D.OverlapCircleAll(transform.position, 2, interactableLayerMask);
+      Collider2D[] interactableList = Physics2D.OverlapCircleAll(transform.position, radius, interactableLayerMask);
         Debug.Log(interactableList.Length);
 
     }
