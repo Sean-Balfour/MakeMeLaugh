@@ -409,9 +409,12 @@ MonoBehaviour:
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  radius: 0
-  force: 0
+  radius: 1
+  force: 2000
   m_InteractionUiController: {fileID: 5210548515658176078}
+  InventoryChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5892857043686052569
 MonoBehaviour:
   m_ObjectHideFlags: 0

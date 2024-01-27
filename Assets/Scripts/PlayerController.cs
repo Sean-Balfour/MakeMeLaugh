@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public bool isInteracting { get; private set; } = false;
 
     private bool wasInteractingLastFrame = false;
+
+    public UnityEvent InventoryChanged;
 
 
     private void Awake()
@@ -125,7 +128,7 @@ public class PlayerController : MonoBehaviour
             inventoryString += i.name + ", ";
         }
 
-        Debug.Log(inventoryString);
+        InventoryChanged.Invoke();
     }
 
     public bool CheckItem(Item item)
@@ -136,6 +139,7 @@ public class PlayerController : MonoBehaviour
     public void RemoveItem(Item item)
     {
         inventory.Remove(item);
+        InventoryChanged.Invoke();
     }
 
 }

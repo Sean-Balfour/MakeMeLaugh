@@ -27,7 +27,7 @@ public class sendEmail : Interactables
             if (timePassed > duration)
             {
                 // success in sending email
-                Debug.Log("success");
+             
                 working = false;
             }
 
@@ -42,19 +42,19 @@ public class sendEmail : Interactables
         {
             case 0:
                 working = true;
-                Debug.Log("short"); //4
+                
                 duration = 4f;
                 break;
 
             case 1:
                 working = true;
-                Debug.Log("med"); //8
+           
                 duration = 8f;
                 break;
 
             case 2:
                 working = true;
-                Debug.Log("long"); //12
+                
                 duration = 12f;
                 break;
         }
@@ -62,7 +62,7 @@ public class sendEmail : Interactables
 
     public override void Interact()
     {
-        Debug.Log("meow");
+        
         //emailWrite();
     }
 }

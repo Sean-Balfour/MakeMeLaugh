@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -42,15 +44,17 @@ public class GameUIController : MonoBehaviour
             }
             else
             {
-                Time.timeScale = 0;
-
                 isPaused = !isPaused;
                 pausePanel.SetActive(isPaused);
-                Button button = GameObject.Find("ResumeButton").GetComponent<Button>();
-                Debug.Log(button.gameObject.name);
-                button.gameObject.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(null);
-                EventSystem.current.SetSelectedGameObject(button.gameObject);
+                if (isPaused)
+                {
+                    Button button = GameObject.Find("ResumeButton").GetComponent<Button>();
+                    button.gameObject.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(null);
+                    EventSystem.current.SetSelectedGameObject(button.gameObject);
+                }
+
+                Time.timeScale = Convert.ToInt32(!isPaused);
             }
         }
     }

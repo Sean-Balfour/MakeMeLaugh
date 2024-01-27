@@ -43,7 +43,7 @@ public class InteractionUiController : MonoBehaviour
     {
         if (!PlayerController.instance.isInteracting) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             PlayerController.instance.StopInteracting();
             return;
