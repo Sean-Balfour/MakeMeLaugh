@@ -22,7 +22,7 @@ public class Staff : MonoBehaviour
     [SerializeField]
     private List<Staff> lackeys;
     [SerializeField]
-    protected StaffLevel level;
+    private StaffLevel level;
 
     [SerializeField]
     private string firstName;
@@ -32,6 +32,7 @@ public class Staff : MonoBehaviour
     private int pay;
 
     public List<Staff> Lackeys { get => lackeys; }
+    public StaffLevel Level { get => level; }
 
     public void CreateProfile()
     {
@@ -43,7 +44,13 @@ public class Staff : MonoBehaviour
     {
         if (level != StaffLevel.Intern)
         {
-            Staff newStaff = Instantiate(Company.company.StaffPrefab);
+            Staff newStaff;
+            
+            if ((level + 1) != StaffLevel.Intern)
+                newStaff = Instantiate(Company.company.StaffPrefab);
+            else
+                newStaff = Instantiate(Company.company.PlayerPrefab);
+              
             newStaff.level = (level + 1);
             newStaff.boss = this;
             newStaff.CreateProfile();
