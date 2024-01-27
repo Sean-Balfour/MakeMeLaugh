@@ -121,6 +121,10 @@ public class InteractionUiController : MonoBehaviour
 
     public void Hide()
     {
+        foreach (Transform child in m_Container)
+        {
+            Destroy(child.gameObject);
+        }
 
         Debug.Log("Hiding interactables");
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
