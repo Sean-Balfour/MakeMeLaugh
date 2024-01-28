@@ -3071,10 +3071,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3114,7 +3114,7 @@ MonoBehaviour:
   pausePanel: {fileID: 794795589940005600}
   controlsPanel: {fileID: 8702527134135571069}
   inventoryUI: {fileID: 7109412876667042272}
-  inventoryPrefab: {fileID: 2010537979164112845, guid: e5abaaceca0a83340aeadc9d91436c4d, type: 3}
+  inventoryPrefab: {fileID: 2010537979164112845, guid: 79b509f4a15a4f0409055d675f081566, type: 3}
   Controls:
   - {fileID: 2904106177322513791}
   - {fileID: 5035275273436088209}

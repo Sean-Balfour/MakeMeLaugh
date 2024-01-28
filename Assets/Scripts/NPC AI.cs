@@ -61,7 +61,7 @@ public class NPCAI : MonoBehaviour
         timer = timer - Time.deltaTime;
         //Debug.Log(timer.ToString());
 
-        if(timer  <= 0.0f)
+        if(timer <= 0.0f)
         {
             MoveToNewNode();
             timer = Random.Range(5.0f, 10.0f);

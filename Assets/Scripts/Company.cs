@@ -190,9 +190,18 @@ public class Company : MonoBehaviour
 
         // current staff is now ceo
         staffOnLevel.Add(currentStaff);
+        int loopLimit = 0;
+        if (allStaff.Count < deskSpawns.transform.childCount)
+        {
+            loopLimit = allStaff.Count;
+        }
+        else
+        {
+            loopLimit = deskSpawns.transform.childCount;
+        }
 
         Staff randomStaff;
-        for (int i = staffOnLevel.Count; i < deskSpawns.transform.childCount; i++)
+        for (int i = staffOnLevel.Count; i < loopLimit; i++)
         {
             do
             {
