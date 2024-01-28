@@ -25,6 +25,10 @@ public class NPCAI : MonoBehaviour
     AudioClip meow;
     AudioSource audioSource;
 
+    //For detecting player
+    float detectionTimer;
+    PolygonCollider2D detectionCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +48,9 @@ public class NPCAI : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         meow = audioClips[Random.Range(0, 6)];
         audioSource.clip = meow;
+
+        detectionCollider = GetComponent<PolygonCollider2D>();
+        detectionTimer = 0.0f;
     }
 
     // Update is called once per frame
@@ -107,5 +114,20 @@ public class NPCAI : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         collision.gameObject.GetComponent<Nodes>().setOccupation(false);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log("Collidng");
+
+        if (collision.gameObject.name == "PF_Player")
+        {
+            detectionTimer += Time.deltaTime;
+
+            if (detectionTimer > 3.0f)
+            {
+                //Call warning
+            }
+        }
     }
 }
