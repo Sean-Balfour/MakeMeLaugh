@@ -27,6 +27,8 @@ public class CameraFollow : MonoBehaviour
         cam= GetComponent<Camera>();
         camOrthSize = cam.orthographicSize;
         cameraRatio = (xMax + camOrthSize) / 2.0f;
+
+        follow = PlayerController.instance.transform;
     }
 
     // Update is called once per frame
