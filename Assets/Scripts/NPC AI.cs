@@ -49,8 +49,9 @@ public class NPCAI : MonoBehaviour
         meow = audioClips[Random.Range(0, 6)];
         audioSource.clip = meow;
 
-        detectionBar = transform.GetChild(1).GetChild(0).GetComponent<Slider>();
+        //detectionBar = transform.GetChild(1).GetChild(0).GetComponent<Slider>();
         detectionBar.value = 0;
+        detectionBar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -116,17 +117,17 @@ public class NPCAI : MonoBehaviour
         if (collision.gameObject.name == "PF_Player")
         {
             detectionBar.value = 0.0f;
+            detectionBar.gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Collidng");
-
         if (collision.gameObject.name == "PF_Player")
         {
             if (PlayerController.instance.isInteracting)
             {
+                detectionBar.gameObject.SetActive(true);
                 detectionBar.value += 0.005f;
 
                 if (detectionBar.value > 1.0f)
@@ -143,6 +144,10 @@ public class NPCAI : MonoBehaviour
                         PlayerController.instance.StopInteracting();
                     }
                 }
+            }
+            else
+            {
+                detectionBar.gameObject.SetActive(false);
             }
         }
     }

@@ -80,6 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   employees: 10
+  score: 0
+  hours: 0
   RandomSeed: -1
   allStaff: []
   staffOnLevel: []
@@ -123,7 +125,7 @@ MonoBehaviour:
   currentDay: 0
   currentHour: 0
   currentMinutes: 0
-  currentSpeed: 0.01
+  currentSpeed: 1
   dayText: {fileID: 0}
   timeText: {fileID: 0}
 --- !u!1 &8754992225221890366
