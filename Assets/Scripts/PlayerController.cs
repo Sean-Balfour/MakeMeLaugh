@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator m_Animator;
 
-    private List<Item> inventory = new List<Item>();
+    public List<Item> inventory { get; private set; } = new List<Item>();
 
     public bool isInteracting { get; private set; } = false;
 
@@ -79,8 +79,11 @@ public class PlayerController : MonoBehaviour
             audioSource.Play();
         }
 
-        if (vertical != 0) m_Animator.SetFloat("X", vertical);
-        if (horizontal != 0) m_Animator.SetFloat("Y", horizontal);
+        if (vertical > 0.1 || vertical < -0.1) m_Animator.SetFloat("X", vertical);
+        if (horizontal > 0.1 || horizontal < -0.1) m_Animator.SetFloat("Y", horizontal);
+
+        if (horizontal != 0 && vertical == 0) m_Animator.SetFloat("X", vertical);
+        if (vertical != 0 && horizontal == 0) m_Animator.SetFloat("Y", horizontal);
 
         m_Animator.SetBool("IsWalk", horizontal != 0 || vertical != 0);
     }

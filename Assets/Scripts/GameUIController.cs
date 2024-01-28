@@ -15,6 +15,12 @@ public class GameUIController : MonoBehaviour
     private bool isPaused;
 
     [SerializeField]
+    private Transform inventoryUI;
+
+    [SerializeField]
+    private Transform inventoryPrefab;
+
+    [SerializeField]
     private PlayerController playerController;
 
     [SerializeField]
@@ -34,6 +40,8 @@ public class GameUIController : MonoBehaviour
         {
             Controls[i].SetActive(false);
         }
+
+        PlayerController.instance.InventoryChanged.AddListener(UpdateInventory);
     }
 
     // Update is called once per frame
@@ -110,6 +118,23 @@ public class GameUIController : MonoBehaviour
         button.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button.gameObject);
+    }
+
+    private void UpdateInventory()
+    {
+
+       for (int i = 0; i < inventoryUI.childCount; i++)
+       {
+            GameObject.Destroy(inventoryUI.GetChild(i).gameObject);
+       }
+
+
+       foreach (Item item in playerController.inventory)
+       {
+            Transform slot = Instantiate(inventoryPrefab);
+            slot.SetParent(inventoryUI);
+            slot.GetChild(0).GetComponent<Image>().sprite = item.itemSprite;
+       }
     }
 
     public void QuitGame()
