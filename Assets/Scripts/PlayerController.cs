@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent InventoryChanged;
 
+    AudioSource audioSource;
 
     private void Awake()
     {
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
         instance = this;
         GameObject.DontDestroyOnLoad(this);
+
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -70,6 +73,11 @@ public class PlayerController : MonoBehaviour
 
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         this.gameObject.GetComponent<Rigidbody2D>().AddForce (new Vector3(horizontal, vertical, 0)*force * movementSpeed * Time.fixedDeltaTime);
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
 
         if (vertical != 0) m_Animator.SetFloat("X", vertical);
         if (horizontal != 0) m_Animator.SetFloat("Y", horizontal);
