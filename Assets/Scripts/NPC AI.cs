@@ -16,6 +16,7 @@ public class NPCAI : MonoBehaviour
 
     Vector3 directionBetweenPoints;
     RaycastHit2D hit;
+    [SerializeField]
     GameObject nodeToGoTo;
     GameObject currentNode;
 
@@ -49,7 +50,7 @@ public class NPCAI : MonoBehaviour
     void Update()
     {
         timer = timer - Time.deltaTime;
-        Debug.Log(timer.ToString());
+        //Debug.Log(timer.ToString());
 
         if(timer  <= 0.0f)
         {
@@ -81,8 +82,8 @@ public class NPCAI : MonoBehaviour
             {
                 directionBetweenPoints = (nodes[i].gameObject.transform.position - transform.position).normalized;
 
-                hit = Physics2D.Raycast(transform.position, directionBetweenPoints * 10.0f);
-                Debug.DrawRay(transform.position, directionBetweenPoints * 10.0f, Color.cyan, 20.0f);
+                hit = Physics2D.Raycast(transform.position, directionBetweenPoints * 30.0f);
+                Debug.DrawRay(transform.position, directionBetweenPoints * 30.0f, Color.cyan, 5.0f);
 
                 if(hit.collider.gameObject.tag == "Node")
                 {
