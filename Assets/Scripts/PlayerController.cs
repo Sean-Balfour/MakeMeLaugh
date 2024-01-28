@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator m_Animator;
 
-    private List<Item> inventory = new List<Item>();
+    public List<Item> inventory { get; private set; } = new List<Item>();
 
     public bool isInteracting { get; private set; } = false;
 
@@ -71,8 +71,13 @@ public class PlayerController : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         this.gameObject.GetComponent<Rigidbody2D>().AddForce (new Vector3(horizontal, vertical, 0)*force * movementSpeed * Time.fixedDeltaTime);
 
-        if (vertical != 0) m_Animator.SetFloat("X", vertical);
-        if (horizontal != 0) m_Animator.SetFloat("Y", horizontal);
+        if (vertical > 0.1 || vertical < -0.1) m_Animator.SetFloat("X", vertical);
+        if (horizontal > 0.1 || horizontal < -0.1) m_Animator.SetFloat("Y", horizontal);
+
+        if(horizontal != 0 && vertical == 0) m_Animator.SetFloat ("X", vertical);
+        if(vertical != 0 && horizontal == 0)m_Animator.SetFloat ("Y", horizontal);
+
+        Debug.Log(horizontal);
 
         m_Animator.SetBool("IsWalk", horizontal != 0 || vertical != 0);
     }

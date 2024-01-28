@@ -52,7 +52,7 @@ public class InteractionUiController : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
         {
 
             if (m_Container.GetChild(m_CurrentIndex).GetComponent<InteractionUiButton>().isDisabled) { PlayerController.instance.StopInteracting(); return; }
