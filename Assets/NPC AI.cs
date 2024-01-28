@@ -19,6 +19,11 @@ public class NPCAI : MonoBehaviour
     GameObject nodeToGoTo;
     GameObject currentNode;
 
+    [SerializeField]
+    AudioClip[] audioClips = new AudioClip[7];
+    AudioClip meow;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +39,10 @@ public class NPCAI : MonoBehaviour
         {
             nodes.Add(nodeObjects[i].GetComponent<Nodes>());
         }
+
+        audioSource = GetComponent<AudioSource>();
+        meow = audioClips[Random.Range(0, 6)];
+        audioSource.clip = meow;
     }
 
     // Update is called once per frame
@@ -53,6 +62,7 @@ public class NPCAI : MonoBehaviour
             }
 
             currentNode = nodeToGoTo;
+            audioSource.Play();
         }
 
         if (nodeToGoTo != null)
