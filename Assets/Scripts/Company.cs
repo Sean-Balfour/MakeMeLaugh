@@ -156,6 +156,10 @@ public class Company : MonoBehaviour
         for (int i = 0; i < allStaff.Count; i++)
         {
             allStaff[i].gameObject.transform.position = staffSpawn.position;
+            if (allStaff[i].gameObject.GetComponent<NPCAI>())
+            {
+                allStaff[i].gameObject.GetComponent<NPCAI>().enabled = false;
+            }
         }
 
         Staff currentStaff = player;
@@ -182,6 +186,10 @@ public class Company : MonoBehaviour
         for (int i = 0; i < staffOnLevel.Count; i++)
         {
             staffOnLevel[i].transform.position = door.position;
+            if (allStaff[i].gameObject.GetComponent<NPCAI>())
+            {
+                allStaff[i].gameObject.GetComponent<NPCAI>().enabled = true;
+            }
         }
     }
 
