@@ -32,7 +32,7 @@ public class scorebaord : MonoBehaviour
 
     private const string scoreURL = "https://ggj24.pdox.uk/setscore.php";
 
-    IEnumerator DoPostScores(string name, int score, int hours)
+    public IEnumerator DoPostScores(string name, int score, int hours)
     {
         WWWForm form = new WWWForm();
         form.AddField("name", name);

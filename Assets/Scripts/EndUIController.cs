@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class EndUIController : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class EndUIController : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI scoreText;
+
+    [SerializeField]
+    private InputField InputField;
+
+    [SerializeField]
+    private Button submitScore;
 
     private bool hasWon;
 
@@ -38,6 +45,25 @@ public class EndUIController : MonoBehaviour
 
         OnSceneLoaded();
         //SceneManager.sceneLoaded += OnSceneLoaded;
+
+        submitScore.onClick.AddListener(Submit);
+        InputField.onValueChanged.AddListener(Check);
+    }
+
+    void Submit ()
+    {
+        scorebaord.instance.DoPostScores(InputField.text, Company.company.Score, Company.company.Hours);
+    }
+
+    void Check(string newsting)
+    {
+        if(newsting.Length >= 3)
+        {
+            submitScore.interactable = true;
+        } else
+        {
+            submitScore.interactable = false;
+        }
     }
 
     // Update is called once per frame
@@ -66,4 +92,6 @@ public class EndUIController : MonoBehaviour
         loseScreen.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
+
+    
 }
