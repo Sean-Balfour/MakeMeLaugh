@@ -102,7 +102,7 @@ public class Staff : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
         else
         {

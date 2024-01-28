@@ -46,6 +46,8 @@ public class GameUIController : MonoBehaviour
         playerController = PlayerController.instance;
 
         playerController.InventoryChanged.AddListener(UpdateInventory);
+
+        Resume();
     }
 
     // Update is called once per frame

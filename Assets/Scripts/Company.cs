@@ -311,7 +311,7 @@ public class Company : MonoBehaviour
 
         if (player.Level == StaffLevel.LaidOff)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
         else
         {

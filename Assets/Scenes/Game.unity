@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1694043642997211873, guid: 6c1688bc5d0f9cd4ab343bdde2acbf28, type: 3}
+      propertyPath: inventoryPrefab
+      value: 
+      objectReference: {fileID: 2010537979164112845, guid: 79b509f4a15a4f0409055d675f081566, type: 3}
     - target: {fileID: 2351445705259845671, guid: 6c1688bc5d0f9cd4ab343bdde2acbf28, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -389,6 +393,18 @@ PrefabInstance:
     - target: {fileID: 5643194850902692651, guid: 6c1688bc5d0f9cd4ab343bdde2acbf28, type: 3}
       propertyPath: m_Name
       value: GameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648321849442075469, guid: 6c1688bc5d0f9cd4ab343bdde2acbf28, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648321849442075469, guid: 6c1688bc5d0f9cd4ab343bdde2acbf28, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648321849442075469, guid: 6c1688bc5d0f9cd4ab343bdde2acbf28, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 6646603693281413293, guid: 6c1688bc5d0f9cd4ab343bdde2acbf28, type: 3}
       propertyPath: m_AnchorMax.y

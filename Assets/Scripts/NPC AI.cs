@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NPCAI : MonoBehaviour
@@ -82,32 +83,35 @@ public class NPCAI : MonoBehaviour
 
     void MoveToNewNode()
     {
-        for(int i = 0; i < nodes.Count; i++)
+        if (SceneManager.GetActiveScene().name == "Game")
         {
-            //If node is "unoccupied", change it to occupied and move the obejct to it
-
-            if (nodes[i].getOccupation() == false)
+            for (int i = 0; i < nodes.Count; i++)
             {
-                directionBetweenPoints = (nodes[i].gameObject.transform.position - transform.position).normalized;
+                //If node is "unoccupied", change it to occupied and move the obejct to it
 
-                hits = Physics2D.RaycastAll(transform.position, directionBetweenPoints * 30.0f);
-                Debug.DrawRay(transform.position, directionBetweenPoints * 30.0f, Color.cyan, 5.0f);
-
-                for(int j = 0; j < hits.Length; j++)
+                if (nodes[i].getOccupation() == false)
                 {
-                    if (hits[j].collider.gameObject.tag == "Node")
+                    directionBetweenPoints = (nodes[i].gameObject.transform.position - transform.position).normalized;
+
+                    hits = Physics2D.RaycastAll(transform.position, directionBetweenPoints * 30.0f);
+                    Debug.DrawRay(transform.position, directionBetweenPoints * 30.0f, Color.cyan, 5.0f);
+
+                    for (int j = 0; j < hits.Length; j++)
                     {
-                        nodeToGoTo = nodes[i].gameObject;
-                        nodes[i].setOccupation(true);
+                        if (hits[j].collider.gameObject.tag == "Node")
+                        {
+                            nodeToGoTo = nodes[i].gameObject;
+                            nodes[i].setOccupation(true);
 
-                        return;
+                            return;
+                        }
                     }
-                }
 
-                //Find the difference between current node and planned node
-                //Do the raycast
-                //If colliding with anything other than node, do not go to it
-                
+                    //Find the difference between current node and planned node
+                    //Do the raycast
+                    //If colliding with anything other than node, do not go to it
+
+                }
             }
         }
     }

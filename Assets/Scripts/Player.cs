@@ -17,6 +17,11 @@ public class Player : Staff
     {
         if (!gameRunning) return;
 
+        if (Input.GetKeyUp(KeyCode.H))
+            Level = StaffLevel.CEO;
+        else if (Input.GetKeyUp (KeyCode.L))
+            Level = StaffLevel.LaidOff;
+
         if (Level == StaffLevel.CEO)
         {
             gameRunning = false;
@@ -31,13 +36,13 @@ public class Player : Staff
                 Company.company.Hours = hours;
             }
 
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
         else if (Level == StaffLevel.LaidOff)
         {
             gameRunning = false;
 
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }
 }

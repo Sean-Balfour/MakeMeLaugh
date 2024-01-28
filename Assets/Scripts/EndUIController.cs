@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EndUIController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class EndUIController : MonoBehaviour
 
     PlayerController playerController;
 
+    [SerializeField]
+    private TextMeshProUGUI scoreText;
+
     private bool hasWon;
 
     // Start is called before the first frame update
@@ -22,9 +26,18 @@ public class EndUIController : MonoBehaviour
         loseScreen.SetActive(false);
         hasWon = false;
 
-        playerController = PlayerController.instance;
+        if (Company.company)
+        {
+            hasWon = Company.company.Player.Level == StaffLevel.CEO;
+        }
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        if (PlayerController.instance)
+        {
+            playerController = PlayerController.instance;
+        }
+
+        OnSceneLoaded();
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -33,18 +46,18 @@ public class EndUIController : MonoBehaviour
         
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void OnSceneLoaded()
     {
         if (hasWon)
         {
             winScreen.SetActive(true);
+            scoreText.text = "Score: $" + Company.company.Score.ToString() + "/hr";
         }
         else
         {
             loseScreen.SetActive(true);
+            scoreText.text = "Laid off!";
         }
-
-        // ADD SCORE
     }
 
     public void Return()
