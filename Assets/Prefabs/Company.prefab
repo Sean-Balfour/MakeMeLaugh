@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5455587665212024217}
   - component: {fileID: 7558782563353752966}
+  - component: {fileID: 8937095283986933692}
   m_Layer: 0
   m_Name: Company
   m_TagString: Untagged
@@ -107,6 +108,24 @@ MonoBehaviour:
   leadLimit: 6
   seniorLimit: 8
   midLimit: 10
+--- !u!114 &8937095283986933692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5392892260839068679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4988092a5dda51741bbd17b760b25a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDay: 0
+  currentHour: 0
+  currentMinutes: 0
+  currentSpeed: 0.01
+  dayText: {fileID: 0}
+  timeText: {fileID: 0}
 --- !u!1 &8754992225221890366
 GameObject:
   m_ObjectHideFlags: 0
