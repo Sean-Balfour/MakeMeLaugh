@@ -10,6 +10,7 @@ public class MainMenuController : MonoBehaviour
 
     public GameObject mainPanel;
     public GameObject controlsPanel;
+    public GameObject leaderboardPanel;
     public GameObject creditsPanel;
     GameObject currentPanel;
 
@@ -25,6 +26,7 @@ public class MainMenuController : MonoBehaviour
     {
         mainPanel.SetActive(true);
         controlsPanel.SetActive(false);
+        leaderboardPanel.SetActive(false);
         creditsPanel.SetActive(false);
         currentControlDisplay = 0;
         Controls[currentControlDisplay].SetActive(true);
@@ -56,6 +58,18 @@ public class MainMenuController : MonoBehaviour
         mainPanel.SetActive(false);
         controlsPanel.SetActive(true);
         currentPanel = controlsPanel;
+        Button button = GameObject.Find("BackButton").GetComponent<Button>();
+        Debug.Log(button.gameObject.name);
+        button.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(button.gameObject);
+    }
+
+    public void Leaderboard()
+    {
+        mainPanel.SetActive(false);
+        leaderboardPanel.SetActive(true);
+        currentPanel = leaderboardPanel;
         Button button = GameObject.Find("BackButton").GetComponent<Button>();
         Debug.Log(button.gameObject.name);
         button.gameObject.SetActive(true);
