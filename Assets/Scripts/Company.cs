@@ -18,21 +18,25 @@ public class Company : MonoBehaviour
     [SerializeField]
     private int employees;
     private int companyValue;
-
     [SerializeField]
     private int RandomSeed = -1;
 
     [SerializeField]
     private Staff CEO;
-
     [SerializeField]
     private Staff staffPrefab;
     [SerializeField]
     private Player playerPrefab;
 
     [SerializeField]
+    private Desk deskPrefab;
+    [SerializeField]
+    private GameObject deskSpawns;
+
+    [SerializeField]
     private bool showRandomChances;
 
+    [Header("Chances")]
     [SerializeField]
     private float directorChance;
     [SerializeField]
@@ -46,6 +50,7 @@ public class Company : MonoBehaviour
     [SerializeField]
     private float juniorChance;
 
+    [Header("Amounts")]
     [SerializeField]
     private int directorAmount;
     [SerializeField]
@@ -56,7 +61,8 @@ public class Company : MonoBehaviour
     private int seniorAmount;
     [SerializeField]
     private int midAmount;
- 
+
+    [Header("Limits")]
     [SerializeField]
     private int directorLimit;
     [SerializeField]
@@ -114,7 +120,16 @@ public class Company : MonoBehaviour
         CEO.Init();
         CEO.CreateProfile();
         CEO.transform.SetParent(transform);
+        GenerateStaff();
 
+        for (int i = 0; i <= deskSpawns.transform.childCount - 1; i++)
+        {
+            Desk newDesk = Instantiate(deskPrefab, deskSpawns.transform.GetChild(i).position, deskSpawns.transform.GetChild(i).rotation);
+        }
+    }
+
+    private void GenerateStaff()
+    {
         Dictionary<float, StaffLevel> roles = new Dictionary<float, StaffLevel>()
         {
             { directorChance, StaffLevel.Director },

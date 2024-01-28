@@ -49,6 +49,8 @@ MonoBehaviour:
   CEO: {fileID: 0}
   staffPrefab: {fileID: 9177228351137049657, guid: f7fd6c4fb0cb38749b00a788e4c7a593, type: 3}
   playerPrefab: {fileID: 5892857043686052569, guid: d6052a2cc8a30f74f92bb94e00576fbf, type: 3}
+  deskPrefab: {fileID: 6639362631253602895, guid: 97af6491645dcb54d8226418f0dde79b, type: 3}
+  deskSpawns: {fileID: 0}
   showRandomChances: 1
   directorChance: 0.00000001
   principalChance: 0.2
