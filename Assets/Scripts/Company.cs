@@ -191,6 +191,12 @@ public class Company : MonoBehaviour
                 allStaff[i].gameObject.GetComponent<NPCAI>().enabled = true;
             }
         }
+
+        Desk[] desks = FindObjectsByType<Desk>(FindObjectsSortMode.None);
+        for (int i = 0; i < desks.Length; i++)
+        {
+            desks[i].RandomiseDesk();
+        }
     }
 
     private void GenerateStaff()

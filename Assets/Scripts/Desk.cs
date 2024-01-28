@@ -17,15 +17,15 @@ public class Desk : MonoBehaviour
     private SpriteRenderer accessory1, accessory2, keyboard, mouse;
 
     [SerializeField]
+    private SpriteRenderer phone;
+
+    [SerializeField]
+    private bool hasPhone = false;
+
+    [SerializeField]
     private bool isDarkTheme = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        RandomiseDesk();
-    }
-
-    private void RandomiseDesk()
+    public void RandomiseDesk()
     {
         accessory1.sprite = accessories[UnityEngine.Random.Range(0, accessories.Count)];
         accessory2.sprite = accessories[UnityEngine.Random.Range(0, accessories.Count)];
@@ -40,5 +40,12 @@ public class Desk : MonoBehaviour
             keyboard.sprite = lightTheme[0];
             mouse.sprite = lightTheme[1];
         }
+
+        if (Random.value <= 0.25f)
+            hasPhone = true;
+        else
+            hasPhone = false;
+
+        phone.enabled = hasPhone;
     }
 }
