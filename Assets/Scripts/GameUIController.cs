@@ -20,7 +20,6 @@ public class GameUIController : MonoBehaviour
     [SerializeField]
     private Transform inventoryPrefab;
 
-    [SerializeField]
     private PlayerController playerController;
 
     [SerializeField]
@@ -41,7 +40,9 @@ public class GameUIController : MonoBehaviour
             Controls[i].SetActive(false);
         }
 
-        PlayerController.instance.InventoryChanged.AddListener(UpdateInventory);
+        playerController = PlayerController.instance;
+
+        playerController.InventoryChanged.AddListener(UpdateInventory);
     }
 
     // Update is called once per frame

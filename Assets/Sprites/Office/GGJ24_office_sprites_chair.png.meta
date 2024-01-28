@@ -236,7 +236,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GGJ24_office_sprites_chair_0: 3317054119454584335
+      GGJ24_office_sprites_chair_1: 5847733952977547572
+      GGJ24_office_sprites_chair_2: 8939320925514716728
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
