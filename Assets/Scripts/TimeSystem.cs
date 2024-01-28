@@ -20,6 +20,9 @@ public class TimeSystem : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timeText;
 
+    public int CurrentDay { get => currentDay; }
+    public int CurrentHour { get => currentHour; }
+
     private void Start()
     {
         currentDay = 1;
