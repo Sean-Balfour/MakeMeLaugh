@@ -188,7 +188,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GGJ24_office_sprites_darkkeyboard_0: 3235086422302563920
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

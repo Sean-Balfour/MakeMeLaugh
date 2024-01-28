@@ -15,6 +15,9 @@ public class GameUIController : MonoBehaviour
     private bool isPaused;
 
     [SerializeField]
+    private PlayerController playerController;
+
+    [SerializeField]
     private GameObject[] Controls;
 
     private int currentControlDisplay;
@@ -38,23 +41,30 @@ public class GameUIController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            if (controlsPanel.activeSelf)
+            if (playerController.isInteracting)
             {
-                Back();
+                playerController.StopInteracting();
             }
             else
             {
-                isPaused = !isPaused;
-                pausePanel.SetActive(isPaused);
-                if (isPaused)
+                if (controlsPanel.activeSelf)
                 {
-                    Button button = GameObject.Find("ResumeButton").GetComponent<Button>();
-                    button.gameObject.SetActive(true);
-                    EventSystem.current.SetSelectedGameObject(null);
-                    EventSystem.current.SetSelectedGameObject(button.gameObject);
+                    Back();
                 }
+                else
+                {
+                    isPaused = !isPaused;
+                    pausePanel.SetActive(isPaused);
+                    if (isPaused)
+                    {
+                        Button button = GameObject.Find("ResumeButton").GetComponent<Button>();
+                        button.gameObject.SetActive(true);
+                        EventSystem.current.SetSelectedGameObject(null);
+                        EventSystem.current.SetSelectedGameObject(button.gameObject);
+                    }
 
-                Time.timeScale = Convert.ToInt32(!isPaused);
+                    Time.timeScale = Convert.ToInt32(!isPaused);
+                }
             }
         }
     }

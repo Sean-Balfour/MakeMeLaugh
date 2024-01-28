@@ -188,7 +188,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GGJ24_office_sprites_table_0: 752153012656864689
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

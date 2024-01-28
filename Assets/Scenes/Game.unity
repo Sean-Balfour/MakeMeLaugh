@@ -2906,6 +2906,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320254609}
   m_CullTransparentMesh: 1
+--- !u!114 &1323117154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 552876251607627733, guid: d6052a2cc8a30f74f92bb94e00576fbf, type: 3}
+  m_PrefabInstance: {fileID: 87615549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5436a202ac2d57b4ea674c26753b3370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1335458989
 GameObject:
   m_ObjectHideFlags: 0
@@ -6983,6 +6994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 448519910}
   controlsPanel: {fileID: 210364236}
+  playerController: {fileID: 1323117154}
   Controls:
   - {fileID: 2026573167}
   - {fileID: 2092137024}

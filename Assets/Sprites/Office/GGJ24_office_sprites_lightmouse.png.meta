@@ -188,7 +188,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GGJ24_office_sprites_lightmouse_0: -7752294492173213624
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
