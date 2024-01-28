@@ -53,12 +53,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         interact();
+
     }
     private void FixedUpdate()
     {
         m_Animator.SetBool("IsInteract", false);
 
         Movement();
+
+        //Collider2D[] interactableHighlight = Physics2D.OverlapCircleAll(transform.position, 3, interactableLayerMask);
     }
 
     void Movement()
@@ -93,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     void search()
     {
-        Collider2D[] interactableList = Physics2D.OverlapCircleAll(transform.position, 2, interactableLayerMask);
+        Collider2D[] interactableList = Physics2D.OverlapCircleAll(transform.position, radius, interactableLayerMask);
 
         //* TODO
         //* Show UI to select interactable
