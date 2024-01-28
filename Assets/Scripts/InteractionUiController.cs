@@ -50,10 +50,9 @@ public class InteractionUiController : MonoBehaviour
         }
 
 
-
-
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Fuck You");
 
             if (m_Container.GetChild(m_CurrentIndex).GetComponent<InteractionUiButton>().isDisabled) { PlayerController.instance.StopInteracting(); return; }
 

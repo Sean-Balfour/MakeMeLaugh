@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a316ba51c50bf734eb58b0a000d2c17b, type: 3}
   m_Name: Phone
   m_EditorClassIdentifier: 
-  itemName: Cell Hpone
-  itemSprite: {fileID: 21300000, guid: 0a4f55a02ab6c184bb68b7cea7d82ddb, type: 3}
+  itemName: Cell Phone
+  itemSprite: {fileID: 4289894116380399173, guid: 60ccce5f345b1ff4ab538b52e61c5944, type: 3}
