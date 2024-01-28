@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class NPCAI : MonoBehaviour
 {
@@ -26,8 +27,8 @@ public class NPCAI : MonoBehaviour
     AudioSource audioSource;
 
     //For detecting player
-    float detectionTimer;
-    PolygonCollider2D detectionCollider;
+    [SerializeField]
+    Slider detectionBar;
 
     // Start is called before the first frame update
     void Start()
@@ -49,8 +50,8 @@ public class NPCAI : MonoBehaviour
         meow = audioClips[Random.Range(0, 6)];
         audioSource.clip = meow;
 
-        detectionCollider = GetComponent<PolygonCollider2D>();
-        detectionTimer = 0.0f;
+        detectionBar = transform.GetChild(1).GetChild(0).GetComponent<Slider>();
+        detectionBar.value = 0;
     }
 
     // Update is called once per frame
@@ -111,9 +112,12 @@ public class NPCAI : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.gameObject.GetComponent<Nodes>().setOccupation(false);
+        if (collision.gameObject.name == "PF_Player")
+        {
+            detectionBar.value = 0.0f;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -122,12 +126,7 @@ public class NPCAI : MonoBehaviour
 
         if (collision.gameObject.name == "PF_Player")
         {
-            detectionTimer += Time.deltaTime;
-
-            if (detectionTimer > 3.0f)
-            {
-                //Call warning
-            }
+            detectionBar.value += 0.005f;
         }
     }
 }
