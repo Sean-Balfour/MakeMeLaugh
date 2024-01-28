@@ -33,5 +33,12 @@ public class DeleteGit : Interactables
     {
 
     }
+
+    public override string GetName()
+    {
+        string name = "Delete co-workers git commits.";
+
+        return name;
+    }
 }
 
