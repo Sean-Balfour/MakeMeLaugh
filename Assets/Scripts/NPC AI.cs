@@ -15,7 +15,7 @@ public class NPCAI : MonoBehaviour
     List<Nodes> nodes = new List<Nodes>();
 
     Vector3 directionBetweenPoints;
-    RaycastHit2D hit;
+    RaycastHit2D[] hits;
     [SerializeField]
     GameObject nodeToGoTo;
     GameObject currentNode;
@@ -82,15 +82,18 @@ public class NPCAI : MonoBehaviour
             {
                 directionBetweenPoints = (nodes[i].gameObject.transform.position - transform.position).normalized;
 
-                hit = Physics2D.Raycast(transform.position, directionBetweenPoints * 30.0f);
+                hits = Physics2D.RaycastAll(transform.position, directionBetweenPoints * 30.0f);
                 Debug.DrawRay(transform.position, directionBetweenPoints * 30.0f, Color.cyan, 5.0f);
 
-                if(hit.collider.gameObject.tag == "Node")
+                for(int j = 0; j < hits.Length; j++)
                 {
-                    nodeToGoTo = nodes[i].gameObject;
-                    nodes[i].setOccupation(true);
+                    if (hits[j].collider.gameObject.tag == "Node")
+                    {
+                        nodeToGoTo = nodes[i].gameObject;
+                        nodes[i].setOccupation(true);
 
-                    return;
+                        return;
+                    }
                 }
 
                 //Find the difference between current node and planned node
