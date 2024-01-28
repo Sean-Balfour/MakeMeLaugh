@@ -166,6 +166,11 @@ public class Company : MonoBehaviour
 
     public void StartDay()
     {
+        if (Random.value < 0.05)
+        {
+            player.LayOff();
+        }
+
         staffOnLevel.Clear();
         for (int i = 0; i < allStaff.Count; i++)
         {
