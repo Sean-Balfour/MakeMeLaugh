@@ -27,8 +27,8 @@ public class Desk : MonoBehaviour
 
     private void RandomiseDesk()
     {
-        accessory1.sprite = accessories[UnityEngine.Random.Range(0, accessories.Count - 1)];
-        accessory2.sprite = accessories[UnityEngine.Random.Range(0, accessories.Count - 1)];
+        accessory1.sprite = accessories[UnityEngine.Random.Range(0, accessories.Count)];
+        accessory2.sprite = accessories[UnityEngine.Random.Range(0, accessories.Count)];
 
         if (isDarkTheme)
         {

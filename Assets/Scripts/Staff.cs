@@ -18,7 +18,7 @@ public enum StaffLevel
 public class Staff : MonoBehaviour
 {
     [SerializeField]
-    protected Staff boss;
+    private Staff boss;
     [SerializeField]
     private List<Staff> lackeys;
     [SerializeField]
@@ -33,6 +33,7 @@ public class Staff : MonoBehaviour
 
     public List<Staff> Lackeys { get => lackeys; }
     public StaffLevel Level { get => level; }
+    public Staff Boss { get => boss; }
 
     public void CreateProfile()
     {
@@ -47,9 +48,9 @@ public class Staff : MonoBehaviour
             Staff newStaff;
             
             if ((level + 1) != StaffLevel.Intern)
-                newStaff = Instantiate(Company.company.StaffPrefab);
+                newStaff = Instantiate(Company.company.StaffPrefab, Company.company.StaffSpawn.position, Quaternion.identity);
             else
-                newStaff = Instantiate(Company.company.PlayerPrefab);
+                newStaff = Instantiate(Company.company.PlayerPrefab, Company.company.StaffSpawn.position, Quaternion.identity);
               
             newStaff.level = (level + 1);
             newStaff.boss = this;
@@ -59,14 +60,16 @@ public class Staff : MonoBehaviour
             lackeys.Add(newStaff);
             newStaff.Init();
             newStaff.gameObject.name = (level + 1).ToString();
+
+            Company.company.AllStaff.Add(newStaff);
         }
     }
 
-    public void AddLackey(Staff boss, StaffLevel lackeyLevel)
+    public Staff AddLackey(Staff boss, StaffLevel lackeyLevel)
     {
         if (lackeyLevel == level + 1)
         {
-            Staff newStaff = Instantiate(Company.company.StaffPrefab);
+            Staff newStaff = Instantiate(Company.company.StaffPrefab, Company.company.StaffSpawn.position, Quaternion.identity);
             newStaff.level = lackeyLevel;
             newStaff.gameObject.name = lackeyLevel.ToString();
             newStaff.boss = this;
@@ -75,10 +78,7 @@ public class Staff : MonoBehaviour
 
             lackeys.Add(newStaff);
 
-            if (lackeyLevel == StaffLevel.Intern)
-            {
-                // do player stuff
-            }
+            return newStaff;
         }
         else
         {
@@ -87,7 +87,7 @@ public class Staff : MonoBehaviour
                 AddLackey(this, level + 1);
             }
 
-            lackeys[UnityEngine.Random.Range(0, lackeys.Count - 1)].AddLackey(this, lackeyLevel);
+            return lackeys[UnityEngine.Random.Range(0, lackeys.Count - 1)].AddLackey(this, lackeyLevel);
         }
     }
 
