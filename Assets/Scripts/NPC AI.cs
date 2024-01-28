@@ -77,7 +77,7 @@ public class NPCAI : MonoBehaviour
 
         if (nodeToGoTo != null)
         {
-            transform.position = new Vector3(Mathf.Lerp(transform.position.x, nodeToGoTo.transform.position.x, Time.deltaTime * 5.0f), Mathf.Lerp(transform.position.y, nodeToGoTo.transform.position.y, Time.deltaTime * 5.0f));
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, nodeToGoTo.transform.position.x, Time.deltaTime * 5.0f), Mathf.Lerp(transform.position.y, nodeToGoTo.transform.position.y, Time.deltaTime));
         }
     }
 
