@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     float horizontal, vertical;
-    float movementSpeed = 2f;
+    [SerializeField]
+    float walkSpeed = 2f;
+    [SerializeField]
+    private float sprintSpeed = 4f;
+    private float movingSpeed;
     //float diagonal = 0.1f;
     [SerializeField] private LayerMask interactableLayerMask;
     [SerializeField] private float radius;
@@ -73,9 +77,15 @@ public class PlayerController : MonoBehaviour
 
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        bool sprinting = Input.GetKey(KeyCode.LeftShift);
+
+        if (sprinting)
+            movingSpeed = sprintSpeed;
+        else
+            movingSpeed = walkSpeed;
 
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        this.gameObject.GetComponent<Rigidbody2D>().AddForce (new Vector3(horizontal, vertical, 0)*force * movementSpeed * Time.fixedDeltaTime);
+        this.gameObject.GetComponent<Rigidbody2D>().AddForce (new Vector3(horizontal, vertical, 0)*force * movingSpeed * Time.fixedDeltaTime);
 
         if (!audioSource.isPlaying)
         {

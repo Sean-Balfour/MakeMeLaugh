@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum StaffLevel
 {
@@ -32,8 +33,8 @@ public class Staff : MonoBehaviour
     private int pay;
 
     public List<Staff> Lackeys { get => lackeys; }
-    public StaffLevel Level { get => level; }
-    public Staff Boss { get => boss; }
+    public StaffLevel Level { get => level; set => level = value; }
+    public Staff Boss { get => boss; set => boss = value; }
 
     public void CreateProfile()
     {
@@ -99,23 +100,30 @@ public class Staff : MonoBehaviour
 
     public void LayOff()
     {
-        if (lackeys.Count == 0)
+        if (gameObject.tag == "Player")
         {
-            AddLackey(this, level + 1);
+            SceneManager.LoadScene(2);
         }
-
-        Staff lackeyToPromote = lackeys[UnityEngine.Random.Range(0, lackeys.Count - 1)];
-        lackeyToPromote.Promote();
-        lackeyToPromote.boss = boss;
-        boss.lackeys.Add(lackeyToPromote);
-
-        for (int i = 0; i < lackeyToPromote.lackeys.Count; i++)
+        else
         {
-            lackeyToPromote.lackeys[i].Promote();
+            if (lackeys.Count == 0)
+            {
+                AddLackey(this, level + 1);
+            }
+
+            Staff lackeyToPromote = lackeys[UnityEngine.Random.Range(0, lackeys.Count - 1)];
+            lackeyToPromote.Promote();
+            lackeyToPromote.boss = boss;
+            boss.lackeys.Add(lackeyToPromote);
+
+            for (int i = 0; i < lackeyToPromote.lackeys.Count; i++)
+            {
+                lackeyToPromote.lackeys[i].Promote();
+            }
+
+            boss.lackeys.Remove(this);
+
+            Destroy(this.gameObject);
         }
-
-        boss.lackeys.Remove(this);
-
-        Destroy(this.gameObject);
     }
 }

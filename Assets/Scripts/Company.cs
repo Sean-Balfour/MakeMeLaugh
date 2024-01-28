@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Company : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Company : MonoBehaviour
     public Player Player { get => player; }
     public int Score { get => score; set => score = value; }
     public int Employees { get => employees; }
+    public int Hours { get => hours; set => hours = value; }
 
     private List<string> staffFirstNames = new List<string>() { "Parker", "Morgan", "Rowan", "Amy", "Jack", "Sean", "Gareth", "John", "William", "James", "Charles", "George", "Frank", "Joseph", "Thomas", "Henry", "Robert", "Edward", "Harry", "Walter", "Arthur", "Fred", "Albert", "Samuel", "David", "Louis", "Joe", "Charlie", "Clarence", "Richard", "Andrew", "Daniel", "Ernest", "Will", "Jesse", "Oscar", "Lewis", "Peter", "Benjamin", "Frederick", "Willie", "Alfred", "Sam", "Roy", "Herbert", "Jacob", "Tom", "Elmer", "Carl", "Lee", "Howard", "Martin", "Michael", "Bert", "Herman", "Jim", "Francis", "Harvey", "Earl", "Eugene", "Ralph", "Ed", "Claude", "Edwin", "Ben", "Charley", "Paul", "Edgar", "Isaac", "Otto", "Luther", "Lawrence", "Ira", "Patrick", "Guy", "Oliver", "Theodore", "Hugh", "Clyde", "Alexander", "August", "Floyd", "Homer", "Jack", "Leonard", "Horace", "Marion", "Philip", "Allen", "Archie", "Stephen", "Chester", "Willis", "Raymond", "Rufus", "Warren", "Jessie", "Milton", "Alex", "Leo", "Julius", "Ray", "Sidney", "Bernard", "Dan", "Jerry", "Calvin", "Stella", "Sallie", "Nettie", "Etta", "Harriet", "Sadie", "Katie", "Lydia", "Kate", "Mollie", "Lulu", "Nannie", "Lottie", "Belle", "Charlotte", "Amelia", "Hannah", "Jane", "Emily", "Matilda", "Henrietta", "Sara", "Estella", "Theresa", "Josie", "Sophia", "Anne", "Delia", "Louisa", "Mayme", "Estelle", "Nina", "Bettie", "Luella", "Inez", "Lela", "Rosie", "Millie", "Janie", "Cornelia", "Victoria", "Celia", "Christine", "Birdie", "Harriett", "Mable", "Myra", "Sophie", "Tillie", "Isabel", "Sylvia", "Isabelle", "Leila", "Sally", "Ina", "Nell", "Alberta", "Katharine", "Rena", "Mina", "Mathilda", "Dollie", "Hettie", "Fanny", "Lenora", "Adelaide", "Lelia", "Nelle", "Sue", "Johanna", "Lilly", "Lucinda", "Minerva", "Lettie", "Roxie", "Helena", "Hilda", "Hulda", "Genevieve", "Cordelia", "Jeanette", "Adeline", "Leah", "Lura", "Mittie", "Isabella", "Olga", "Phoebe", "Teresa", "Lida", "Lina", "Marguerite", "Claudia", "Cecelia", "Bess", "Emilie", "Rosetta", "Myrtie", "Cecilia", "Olivia", "Ophelia" };
     private List<string> staffLastNames = new List<string>() { "Campbell", "Finney", "Ruthven", "Calderbank", "Aitken" ,"Balfour", "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson", "Martinez", "Anderson", "Taylor", "Thomas", "Hernandez", "Moore", "Martin", "Jackson", "Thompson", "White", "Lopez", "Lee", "Gonzalez", "Harris", "Clark", "Lewis", "Robinson", "Walker", "Perez", "Hall", "Young", "Allen", "Sanchez", "Wright", "King", "Scott", "Green", "Baker", "Adams", "Nelson", "Hill", "Ramirez", "Mitchell", "Roberts", "Carter", "Phillips", "Evans", "Turner", "Torres", "Parker", "Collins", "Edwards", "Stewart", "Flores", "Morris", "Nguyen", "Murphy", "Rivera", "Cook", "Rogers", "Morgan", "Peterson", "Cooper", "Reed", "Bailey", "Bell", "Gomez", "Kelly", "Howard", "Ward", "Cox", "Diaz", "Richardson", "Wood", "Watson", "Brooks", "Bennett", "Gray", "James", "Reyes", "Cruz", "Hughes", "Price", "Myers", "Long", "Foster", "Sanders", "Ross", "Morales", "Powell", "Sullivan", "Russell", "Ortiz", "Jenkins", "Gutierrez", "Perry", "Butler", "Barnes", "Fisher", "Henderson", "Coleman", "Simmons", "Patterson", "Jordan", "Reynolds", "Hamilton", "Graham", "Kim", "Gonzales", "Alexander", "Ramos", "Wallace", "Griffin", "West", "Cole", "Hayes", "Chavez", "Gibson", "Bryant", "Ellis", "Stevens", "Murray", "Ford", "Marshall", "Owens", "Mcdonald", "Harrison", "Ruiz", "Kennedy", "Wells", "Alvarez", "Woods", "Mendoza", "Castillo", "Olson", "Webb", "Washington", "Tucker", "Freeman", "Burns", "Henry", "Vasquez", "Snyder", "Simpson", "Crawford", "Jimenez", "Porter", "Mason", "Shaw", "Gordon", "Wagner", "Hunter", "Romero", "Hicks", "Dixon", "Hunt", "Palmer", "Robertson", "Black", "Holmes", "Stone", "Meyer", "Boyd", "Mills", "Warren", "Fox", "Rose", "Rice", "Moreno", "Schmidt", "Patel", "Ferguson", "Nichols", "Herrera", "Medina", "Ryan", "Fernandez", "Weaver", "Daniels", "Stephens", "Gardner", "Payne", "Kelley", "Dunn", "Pierce", "Arnold", "Tran", "Spencer", "Peters", "Hawkins", "Grant", "Hansen", "Castro", "Hoffman", "Hart", "Elliott", "Cunningham", "Knight", "Bradley" };
@@ -24,6 +26,8 @@ public class Company : MonoBehaviour
     private int employees;
     [SerializeField]
     private int score;
+    [SerializeField]
+    private int hours;
     [SerializeField]
     private int RandomSeed = -1;
 
@@ -162,6 +166,11 @@ public class Company : MonoBehaviour
 
     public void StartDay()
     {
+        if (Random.value < 0.05)
+        {
+            player.LayOff();
+        }
+
         staffOnLevel.Clear();
         for (int i = 0; i < allStaff.Count; i++)
         {
@@ -296,11 +305,21 @@ public class Company : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void DemotePlayer()
     {
-        if (Input.GetKeyUp(KeyCode.F))
+        player.Level += 1;
+
+        if (player.Level == StaffLevel.LaidOff)
         {
-            CEO.Lackeys[UnityEngine.Random.Range(0, CEO.Lackeys.Count)].LayOff();
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            Staff playerBoss = player.Boss;
+            playerBoss.AddLackey(playerBoss, playerBoss.Level + 1);
+            playerBoss.Lackeys.Remove(player);
+            player.Level += 1;
+            player.Boss = playerBoss.Lackeys[0];
         }
     }
 }
