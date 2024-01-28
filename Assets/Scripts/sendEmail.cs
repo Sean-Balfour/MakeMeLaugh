@@ -65,4 +65,11 @@ public class sendEmail : Interactables
         
         //emailWrite();
     }
+
+    public override string GetName()
+    {
+        string name = "Send incriminating email to boss.";
+
+        return name;
+    }
 }

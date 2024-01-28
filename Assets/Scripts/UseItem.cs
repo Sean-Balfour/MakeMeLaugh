@@ -24,6 +24,7 @@ public class UseItem : Interactables
         {
             PlayerController.instance.RemoveItem(itemRequired);
             Debug.Log("Item used");
+            this.EndInteract();
         }
         else
         {
