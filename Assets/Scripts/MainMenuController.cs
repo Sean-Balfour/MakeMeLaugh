@@ -67,8 +67,10 @@ public class MainMenuController : MonoBehaviour
 
     public void Leaderboard()
     {
+
         mainPanel.SetActive(false);
         leaderboardPanel.SetActive(true);
+        leaderboardPanel.GetComponent<scoreboardUi>().Redo();
         currentPanel = leaderboardPanel;
         Button button = GameObject.Find("BackButton").GetComponent<Button>();
         Debug.Log(button.gameObject.name);
