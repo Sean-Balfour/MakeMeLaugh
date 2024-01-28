@@ -125,7 +125,25 @@ public class NPCAI : MonoBehaviour
 
         if (collision.gameObject.name == "PF_Player")
         {
-            detectionBar.value += 0.005f;
+            if (PlayerController.instance.isInteracting)
+            {
+                detectionBar.value += 0.005f;
+
+                if (detectionBar.value > 1.0f)
+                {
+                    float rand = Random.value;
+
+                    if (rand < 0.75)
+                    {
+                        Company.company.DemotePlayer();
+                    }
+                    else
+                    {
+                        detectionBar.value = 0.0f;
+                        PlayerController.instance.StopInteracting();
+                    }
+                }
+            }
         }
     }
 }

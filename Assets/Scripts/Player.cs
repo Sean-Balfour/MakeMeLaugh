@@ -28,6 +28,7 @@ public class Player : Staff
                 int companyValue = Company.company.Employees * 50000;
                 int hours = (timeSystem.CurrentDay * 12) + timeSystem.CurrentHour;
                 Company.company.Score = companyValue / hours;
+                Company.company.Hours = hours;
             }
 
             SceneManager.LoadScene(0);

@@ -32,8 +32,8 @@ public class Staff : MonoBehaviour
     private int pay;
 
     public List<Staff> Lackeys { get => lackeys; }
-    public StaffLevel Level { get => level; }
-    public Staff Boss { get => boss; }
+    public StaffLevel Level { get => level; set => level = value; }
+    public Staff Boss { get => boss; set => boss = value; }
 
     public void CreateProfile()
     {
