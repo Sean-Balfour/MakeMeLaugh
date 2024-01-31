@@ -553,13 +553,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5392892260839068679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4988092a5dda51741bbd17b760b25a58, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fd592e4d85c72a43895feae4d6094fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentDay: 0
   currentHour: 0
   currentMinutes: 0
-  currentSpeed: 1
+  currentSpeed: 0
   dayText: {fileID: 0}
   timeText: {fileID: 0}
 --- !u!1 &6169332628020908138

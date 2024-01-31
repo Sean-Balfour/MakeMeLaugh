@@ -95,18 +95,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6438396237860410734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a700cf9e3e22e49af8590634663fa3, type: 3}
+  m_Script: {fileID: 11500000, guid: b455e974bbad26e4d86a3b72c7a2c9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nodeObjects: []
+  nodeToGoTo: {fileID: 0}
   audioClips:
-  - {fileID: 8300000, guid: 9521294f9baa8de459ab5f3e20f95624, type: 3}
-  - {fileID: 8300000, guid: 69cff7fd1230d7a47b3cbf51baaf4652, type: 3}
-  - {fileID: 8300000, guid: aaca8327a290a2e448e947999e4c5a09, type: 3}
-  - {fileID: 8300000, guid: 794db45d09b97734895ead4e03667fbe, type: 3}
-  - {fileID: 8300000, guid: 55f243fd2e196634b9631e0bedcea248, type: 3}
-  - {fileID: 8300000, guid: 29ffad8f664901248ae01c3893af02d3, type: 3}
-  - {fileID: 8300000, guid: a3426b24b274d254f9b01ea077694d6f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  detectionBar: {fileID: 0}
 --- !u!82 &6929906336405657922
 AudioSource:
   m_ObjectHideFlags: 0

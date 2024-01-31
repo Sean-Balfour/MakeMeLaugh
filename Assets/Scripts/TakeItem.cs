@@ -21,5 +21,10 @@ public class TakeItem : Interactables
         return name;
     }
 
+    protected override void Update()
+    {
+        base.Update();
+    }
+
 }
 

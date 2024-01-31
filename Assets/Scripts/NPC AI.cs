@@ -11,8 +11,8 @@ public class NPCAI : MonoBehaviour
     float timer;
 
     [SerializeField]
-    List<GameObject> nodeObjects;
-    
+    GameObject[] nodeObjects;
+
     List<Nodes> nodes = new List<Nodes>();
 
     Vector3 directionBetweenPoints;
@@ -27,7 +27,6 @@ public class NPCAI : MonoBehaviour
     AudioSource audioSource;
 
     //For detecting player
-    [SerializeField]
     Slider detectionBar;
 
     // Start is called before the first frame update
@@ -39,9 +38,9 @@ public class NPCAI : MonoBehaviour
         timer = Random.Range(5.0f, 10.0f);
 
         //Finding all the nodes
-        GameObject.FindGameObjectsWithTag("Node", nodeObjects);
+        nodeObjects = GameObject.FindGameObjectsWithTag("Node");
 
-        for(int i = 0; i < nodeObjects.Count; i++)
+        for (int i = 0; i < nodeObjects.Length; i++)
         {
             nodes.Add(nodeObjects[i].GetComponent<Nodes>());
         }
@@ -55,20 +54,25 @@ public class NPCAI : MonoBehaviour
         detectionBar.gameObject.SetActive(false);
     }
 
+    void Awake()
+    {
+        detectionBar = this.gameObject.GetComponentInChildren<Slider>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         timer = timer - Time.deltaTime;
         //Debug.Log(timer.ToString());
 
-        if(timer <= 0.0f)
+        if (timer <= 0.0f)
         {
             MoveToNewNode();
             timer = Random.Range(5.0f, 10.0f);
 
-            if(currentNode != null)
+            if (currentNode != null)
             {
-                currentNode.GetComponent<Nodes>().setOccupation(false); 
+                currentNode.GetComponent<Nodes>().setOccupation(false);
             }
 
             currentNode = nodeToGoTo;

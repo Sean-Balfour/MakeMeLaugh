@@ -173,4 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInteractable: 1
+  isInRange: 0
+  outline: {fileID: 0}
+  baseSkin: {fileID: 0}
+  spriteRenderer: {fileID: 2099810508000213877}
   itemToGive: {fileID: 11400000, guid: 968d6eebde1960e4ba99160ab8cd5cb6, type: 2}

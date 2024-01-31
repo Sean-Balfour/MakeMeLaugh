@@ -23,7 +23,12 @@ public class scoreboardUi : MonoBehaviour
     public async void UpdateDisplay(string scores)
     {
 
-        Debug.Log("updating display");
+        for (int i = 0; i < container.childCount; i++)
+        {
+            if(i==0) continue;
+
+            Destroy(container.GetChild(i).gameObject);
+        }
 
         if (scores == null)
         {
