@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 7674698941482551818}
   - component: {fileID: 7106580070386098193}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: LeaderboardUser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,10 +495,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Left: 20
+    m_Right: 20
+    m_Top: 20
+    m_Bottom: 20
   m_ChildAlignment: 3
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
