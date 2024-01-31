@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -7,21 +5,34 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
+    [Header("Buttons")]
+    [SerializeField] private Button[] m_BackButtons;
+    [SerializeField] private Button m_PlayButton, m_HowToPlayButton, m_LeaderboardButton, m_CreditsButton, m_QuitButton;
 
-    public GameObject mainPanel;
-    public GameObject controlsPanel;
-    public GameObject leaderboardPanel;
-    public GameObject creditsPanel;
-    GameObject currentPanel;
+    [Header("Panels")]
+    [SerializeField] private GameObject[] Controls;
+    [SerializeField] private GameObject mainPanel, controlsPanel, leaderboardPanel, creditsPanel;
 
-    public string gameScene;
+    [Header("Game Scene")]
+    [SerializeField] private string gameScene;
 
-    [SerializeField]
-    private GameObject[] Controls;
-
+    [Header("Private Variables")]
+    private GameObject currentPanel;
     private int currentControlDisplay;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        m_PlayButton.onClick.AddListener(StartGame);
+        m_HowToPlayButton.onClick.AddListener(HowToPlay);
+        m_LeaderboardButton.onClick.AddListener(Leaderboard);
+        m_CreditsButton.onClick.AddListener(Credits);
+        m_QuitButton.onClick.AddListener(CloseGame);
+        foreach (Button button in m_BackButtons)
+        {
+            button.onClick.AddListener(Back);
+        }
+    }
+
     void Start()
     {
         mainPanel.SetActive(true);
@@ -36,15 +47,21 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) && !mainPanel.activeSelf) Back();
+    }
+
+    private void OnDestroy()
+    {
+        m_PlayButton.onClick.RemoveListener(StartGame);
+        m_HowToPlayButton.onClick.RemoveListener(HowToPlay);
+        m_LeaderboardButton.onClick.RemoveListener(Leaderboard);
+        m_CreditsButton.onClick.RemoveListener(Credits);
+        m_QuitButton.onClick.RemoveListener(CloseGame);
+        foreach (Button button in m_BackButtons)
         {
-            if (!mainPanel.activeSelf)
-            {
-                Back();
-            }
+            button.onClick.RemoveListener(Back);
         }
     }
 
@@ -59,7 +76,6 @@ public class MainMenuController : MonoBehaviour
         controlsPanel.SetActive(true);
         currentPanel = controlsPanel;
         Button button = GameObject.Find("BackButton").GetComponent<Button>();
-        Debug.Log(button.gameObject.name);
         button.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button.gameObject);
@@ -67,13 +83,11 @@ public class MainMenuController : MonoBehaviour
 
     public void Leaderboard()
     {
-
         mainPanel.SetActive(false);
         leaderboardPanel.SetActive(true);
         leaderboardPanel.GetComponent<scoreboardUi>().Redo();
         currentPanel = leaderboardPanel;
         Button button = GameObject.Find("BackButton").GetComponent<Button>();
-        Debug.Log(button.gameObject.name);
         button.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button.gameObject);
@@ -100,7 +114,6 @@ public class MainMenuController : MonoBehaviour
         creditsPanel.SetActive(true);
         currentPanel = creditsPanel;
         Button button = GameObject.Find("BackButton").GetComponent<Button>();
-        Debug.Log(button.gameObject.name);
         button.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button.gameObject);
@@ -111,7 +124,6 @@ public class MainMenuController : MonoBehaviour
         currentPanel.SetActive(false);
         mainPanel.SetActive(true);
         Button button = GameObject.Find("PlayButton").GetComponent<Button>();
-        Debug.Log(button.gameObject.name);
         button.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button.gameObject);
@@ -120,6 +132,5 @@ public class MainMenuController : MonoBehaviour
     public void CloseGame()
     {
         Application.Quit();
-        Debug.Log("Closing Game");
     }
 }
