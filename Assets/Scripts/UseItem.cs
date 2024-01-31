@@ -10,7 +10,7 @@ public class UseItem : Interactables
     private void Awake()
     {
         isInteractable = false;
-        PlayerController.instance.InventoryChanged.AddListener(CheckPlz);
+        //PlayerController.instance.InventoryChanged.AddListener(CheckPlz);
     }
 
     void CheckPlz()
@@ -41,6 +41,9 @@ public class UseItem : Interactables
         return name;
 
     }
-
+    protected override void Update()
+    {
+        base.Update();
+    }
 }
 

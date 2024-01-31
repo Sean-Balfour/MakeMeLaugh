@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -67,8 +69,33 @@ public class PlayerController : MonoBehaviour
         m_Animator.SetBool("IsInteract", false);
 
         Movement();
+        CheckDistance();
+    }
 
-        //Collider2D[] interactableHighlight = Physics2D.OverlapCircleAll(transform.position, 3, interactableLayerMask);
+    void CheckDistance()
+    {
+        Interactables[] interactables = FindObjectsByType<Interactables>(FindObjectsSortMode.None);
+        for (int i = 0; i < interactables.Length; i++)
+        {
+            interactables[i].setInRange(false);
+        }
+
+        Collider2D[] interactableHighlight = Physics2D.OverlapCircleAll(transform.position, 3, interactableLayerMask);
+        if (interactableHighlight.Length > 0)
+        {
+            foreach (Collider2D item in interactableHighlight)
+            {
+                item.GetComponent<Interactables>().setInRange(true);
+                Debug.Log("Setting in range");
+            }
+        }
+    
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, 3);
     }
 
     void Movement()
@@ -99,6 +126,8 @@ public class PlayerController : MonoBehaviour
         if (vertical != 0 && horizontal == 0) m_Animator.SetFloat("Y", horizontal);
 
         m_Animator.SetBool("IsWalk", horizontal != 0 || vertical != 0);
+
+        
     }
     void interact()
     {
